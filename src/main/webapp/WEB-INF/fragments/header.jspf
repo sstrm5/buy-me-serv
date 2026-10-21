@@ -1,0 +1,25 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<c:set var="headerSession" value="${pageContext.request.getSession(false)}"/>
+        <header>
+            <div class="header-container">
+                <h1><a href="<c:url value='/'/>"><span class="title-wave header-title">Купи-мне!</span></a></h1>
+                <c:choose>
+                    <c:when test="${empty headerSession || empty headerSession.getAttribute('userId')}">
+                        <div class="header-right-container">
+                            <a href="<c:url value="/sign-up"/>" class="button-link">Зарегистрироваться</a>
+                            <a href="<c:url value="/login"/>" class="button-link">Войти</a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="header-right-container">
+                            <a href="<c:url value='/requests'/>" class="text-link">Запросы</a>
+                            <a href="<c:url value='/purchases'/>" class="text-link">Закупки</a>
+                            <a href="<c:url value="/friends"/>" class="text-link"><c:out value="Друзья"/></a>
+                            <a href="<c:url value="/profile/id${headerSession.getAttribute('userId')}"/>" class="text-link"><c:out value="${headerSession.getAttribute('login')}"/></a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <hr class="divider-header">
+        </header>

@@ -1,0 +1,8 @@
+root = true
+
+[*.{jsp,jspf,jspx,html}]
+indent_style = space
+indent_size = 4
+tab_width = 4
+ij_html_uniform_indent = true
+ij_html_do_not_indent_children_of = none

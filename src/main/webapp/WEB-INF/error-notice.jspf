@@ -1,0 +1,7 @@
+<c:if test="${not empty error}">
+    <div class="error">
+        <span class="error-message" role="alert"><c:out value="${error}"/></span>
+        <button type="button" class="error-close" aria-label="Закрыть сообщение об ошибке"
+                onclick="this.closest('.error').remove()">x</button>
+    </div>
+</c:if>
