@@ -56,5 +56,5 @@
 <c:if test="${owner and purchase.code eq 'COLLECTING'}"><form method="post" enctype="multipart/form-data" id="purchase-finish" class="request-card purchase-form"><input type="hidden" name="csrfToken" value="${sessionScope.purchaseCsrf}"><input type="hidden" name="action" value="finish"><label>Фото чека (необязательно, JPEG или PNG до 5 МБ)<input type="file" name="receipt" accept="image/jpeg,image/png"></label><p class="request-hint">Изменения сохраняются в этом браузере автоматически. При завершении закупки результаты отправятся заказчикам.</p><button class="button-link">Завершить поход</button></form></c:if>
 </main>
 <div id="purchase-draft" data-user="${sessionScope.userId}" data-purchase="${purchase.id}" data-state="${purchase.code}"></div>
-
+<script src="<c:url value='/scripts/purchase-draft.js'/>" defer></script>
 </body></html>
