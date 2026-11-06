@@ -69,6 +69,7 @@ public class PurchaseServlet extends HttpServlet {
             }
             long id=id(req);
             switch(action==null?"":action) {
+                case "paid", "unpaid" -> dao.payment(id,user,Long.parseLong(req.getParameter("requestId")),"paid".equals(action));
                 case "add" -> dao.add(id,user,Long.parseLong(req.getParameter("requestId")));
                 case "remove" -> dao.remove(id,user,Long.parseLong(req.getParameter("requestId")));
                 case "start" -> dao.start(id,user);

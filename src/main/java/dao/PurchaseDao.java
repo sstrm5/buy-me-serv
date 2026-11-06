@@ -174,6 +174,24 @@ public class PurchaseDao {
             db.update("UPDATE purchase SET status_id=(SELECT id FROM purchase_statuses WHERE code='COMPLETED'),completed_at=CURRENT_TIMESTAMP,receipt_data=?,receipt_type=? WHERE id=?",receipt,type,id);
         });
     }
+    public void payment(long purchase,long user,long request,boolean paid) {
+        tx.executeWithoutResult(t -> {
+            db.execute("SELECT pg_advisory_xact_lock(726491230985117604)");
+            var allowed=db.queryForList("""
+                SELECT p.id FROM purchase p JOIN purchase_statuses s ON s.id=p.status_id
+                JOIN assigned_buy_requests a ON a.purchase_id=p.id JOIN buy_requests b ON b.id=a.buy_request_id
+                WHERE p.id=? AND b.id=? AND s.code='COMPLETED' AND (p.shopper_id=? OR b.user_id=?)
+                FOR UPDATE OF p, b
+                """,purchase,request,user,user);
+            if(allowed.isEmpty()) throw new IllegalArgumentException("Запрос недоступен или закупка ещё не завершена.");
+            int changed=db.update("""
+                UPDATE buy_requests SET is_paid_back=?, paid_back_at=CASE WHEN ? THEN CURRENT_TIMESTAMP ELSE NULL END
+                WHERE id=? AND total_amount_due>0
+                  AND EXISTS(SELECT 1 FROM assigned_buy_requests WHERE buy_request_id=? AND purchase_id=?)
+                """,paid,paid,request,request,purchase);
+            if(changed!=1) throw new IllegalArgumentException("Запрос недоступен или оплата не требуется.");
+        });
+    }
     public List<Map<String,Object>> requestPurchases(long request,long user) {
         return db.queryForList("""
             SELECT p.id, p.shopper_id, u.login, s.code, s.name, b.is_paid_back, b.total_amount_due FROM assigned_buy_requests a JOIN purchase p ON p.id=a.purchase_id

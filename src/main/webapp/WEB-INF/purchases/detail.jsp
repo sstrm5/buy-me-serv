@@ -47,7 +47,13 @@
 </c:when><c:otherwise><p>Статус: <c:out value="${i.status_name}"/></p><c:if test="${i.actual_price ne null}"><p>Фактически: <fmt:formatNumber value="${i.unit_name eq 'шт.' or i.unit_name eq 'шт' ? i.actual_quantity - i.actual_quantity % 1 : i.actual_quantity}" maxFractionDigits="3"/> <c:out value="${i.unit_name}"/> · <span class="purchase-item-price"><fmt:formatNumber value="${i.actual_price}" maxFractionDigits="0"/> ₽</span></p><c:if test="${not empty i.actual_name}"><p>Замена: <c:out value="${i.actual_name}"/></p></c:if></c:if></c:otherwise></c:choose>
 </article></c:forEach>
 <c:if test="${purchase.code eq 'COMPLETED'}"><div class="purchase-total"><span>Итого к оплате</span><strong><fmt:formatNumber value="${r.total_amount_due}" minFractionDigits="0" maxFractionDigits="0"/> ₽</strong></div></c:if>
-
+<c:if test="${purchase.code eq 'COMPLETED' and r.total_amount_due gt 0}">
+<p><span class="requisite-badge status-badge" data-status="${r.is_paid_back ? 'PAID' : 'UNPAID'}">${r.is_paid_back ? 'Деньги возвращены' : 'Ожидается возврат денег'}</span></p>
+<c:if test="${owner or r.user_id eq sessionScope.userId}"><form method="post">
+<input type="hidden" name="csrfToken" value="${sessionScope.purchaseCsrf}"><input type="hidden" name="requestId" value="${r.id}">
+<input type="hidden" name="action" value="${r.is_paid_back ? 'unpaid' : 'paid'}">
+<label class="payment-checkbox"><input type="checkbox" ${r.is_paid_back ? 'checked' : ''} onchange="this.form.requestSubmit()"> ${r.user_id eq sessionScope.userId ? 'Я вернул деньги' : 'Деньги получены от заказчика'}</label>
+</form></c:if></c:if>
 <c:if test="${r.user_id eq sessionScope.userId and r.code eq 'AWAITING_DECISION'}">
 <p>Часть товаров куплена с изменениями или не куплена. Можно завершить запрос или повторить такие позиции; откроется черновик для редактирования. Он станет доступен покупателям после сохранения.</p>
 <form method="post"><input type="hidden" name="csrfToken" value="${sessionScope.purchaseCsrf}"><input type="hidden" name="requestId" value="${r.id}"><button class="button-link" name="action" value="decide">Завершить запрос</button> <button class="button-link" name="action" value="repeat">Повторить с изменениями</button></form></c:if>
