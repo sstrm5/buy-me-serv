@@ -918,3 +918,50 @@ button {
 }
 
  
+
+:root { color-scheme: light; }
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --page-background: #0b0201;
+    --light-yellow: #0b0201;
+    --lemon-chiffon: #3f2f26;
+    --linen: #3f2f26;
+    --pale-oak: #9e8470;
+    --dusty-taupe: #d8cec2;
+    --text-color: #ededeb;
+}
+[data-theme="dark"] .purchase-page .purchase-request > .request-heading { background-color: #3f2f26; }
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select { color: var(--text-color); }
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder { color: #9e8470; opacity: 1; }
+[data-theme="dark"] .status-badge[data-status="PENDING"] { background-color: #514323; color: #f4dfa0; }
+[data-theme="dark"] .status-badge[data-status="PLANNED"] { background-color: #3f2f26; color: #d8cec2; }
+[data-theme="dark"] .status-badge[data-status="DRAFT"] { background-color: #34343c; color: #d4d4df; }
+[data-theme="dark"] .status-badge[data-status="ADDED"] { background-color: #243d50; color: #c1def4; }
+[data-theme="dark"] .status-badge[data-status="COLLECTING"] { background-color: #54351f; color: #f4c89d; }
+[data-theme="dark"] .status-badge[data-status="COMPLETED"] { background-color: #2d4328; color: #c3dfb7; }
+[data-theme="dark"] .status-badge[data-status="AWAITING_DECISION"] { background-color: #45304e; color: #e0c4ec; }
+[data-theme="dark"] .status-badge[data-status="EXPIRED"],
+[data-theme="dark"] .status-badge[data-status="UNPAID"] { background-color: #542723; color: #ffb7ad; }
+[data-theme="dark"] .status-badge[data-status="PAID"] { background-color: #20562d; color: #a9f0b6; }
+.profile-theme { margin: 32px 0; }
+.theme-switch { display: inline-flex; align-items: center; gap: 14px; cursor: pointer; }
+.theme-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.theme-switch-track { width: 48px; height: 28px; border-radius: 20px; background: var(--pale-oak); position: relative; border: 1px solid var(--dusty-taupe); }
+.theme-switch-track::after { content: ''; position: absolute; width: 20px; height: 20px; top: 4px; left: 4px; border-radius: 50%; background: var(--page-background); }
+.theme-switch input:checked + .theme-switch-track { background: #9e8470; }
+.theme-switch input:checked + .theme-switch-track::after { transform: translateX(20px); background: #ededeb; }
+.theme-switch input:focus-visible + .theme-switch-track { outline: 2px solid var(--text-color); outline-offset: 4px; }
+
+ 
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+[role="button"],
+.button-link,
+.button-link-plain {
+    border-radius: 0 !important;
+}

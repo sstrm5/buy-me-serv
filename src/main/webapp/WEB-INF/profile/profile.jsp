@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Профиль пользователя ${login}}</title>
         <link rel="stylesheet" href="<c:url value='/styles.css'/>">
-    </head>
+    <script src="<c:url value='/scripts/theme.js'/>"></script></head>
     <body>
         <%@ include file="/WEB-INF/fragments/header.jspf" %>
         <main>
@@ -137,6 +137,14 @@
                     </c:choose>
                 </section>
                 <c:if test="${not empty sessionScope.userId and sessionScope.userId eq requestedUser.id}">
+                    <section class="profile-theme" aria-labelledby="theme-heading">
+                        <h2 id="theme-heading">Оформление</h2>
+                        <label class="theme-switch">
+                            <input type="checkbox" id="theme-toggle" role="switch">
+                            <span class="theme-switch-track" aria-hidden="true"></span>
+                            <span>Тёмная тема</span>
+                        </label>
+                    </section>
                     <button type="button" class="button-link" id="open-logout-dialog">Выйти</button>
                 </c:if>
             </div>

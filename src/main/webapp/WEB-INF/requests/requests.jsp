@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Запросы — Купи-мне!</title>
         <link rel="stylesheet" href="<c:url value='/styles.css'/>">
-    </head>
+    <script src="<c:url value='/scripts/theme.js'/>"></script></head>
     <body>
         <%@ include file="/WEB-INF/fragments/header.jspf" %>
         <main>

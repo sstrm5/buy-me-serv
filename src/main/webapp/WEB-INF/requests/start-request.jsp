@@ -9,7 +9,7 @@
     <title><c:out value="${requestTitle}"/> — Купи-мне!</title>
     <link rel="stylesheet" href="<c:url value='/styles.css'/>">
     <script src="<c:url value='/scripts/buy-request.js'/>" defer></script>
-</head>
+<script src="<c:url value='/scripts/theme.js'/>"></script></head>
 <body>
 <%@ include file="/WEB-INF/fragments/header.jspf" %>
 <main class="requests-container">

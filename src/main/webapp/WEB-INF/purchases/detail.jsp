@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <fmt:setLocale value="ru_RU"/>
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Закупки — Купи-мне!</title><link rel="stylesheet" href="<c:url value='/styles.css'/>"></head><body>
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Закупки — Купи-мне!</title><link rel="stylesheet" href="<c:url value='/styles.css'/>"><script src="<c:url value='/scripts/theme.js'/>"></script></head><body>
 <%@ include file="/WEB-INF/fragments/header.jspf" %>
 <main class="requests-container request-detail purchase-page">
 <%@ include file="/WEB-INF/error-notice.jspf" %>

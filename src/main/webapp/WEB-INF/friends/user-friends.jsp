@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="<c:url value='/styles.css'/>">
         <title>Друзья — Купи-мне!</title>
-    </head>
+    <script src="<c:url value='/scripts/theme.js'/>"></script></head>
     <body>
         <%@ include file="/WEB-INF/fragments/header.jspf" %>
         <main>
