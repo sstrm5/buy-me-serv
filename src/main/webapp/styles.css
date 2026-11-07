@@ -918,7 +918,115 @@ button {
 }
 
  
+.purchase-form { display: grid; gap: 16px; }
+.purchase-form label { display: grid; gap: 8px; }
+.purchase-form input, .purchase-form select { box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid var(--pale-oak); border-radius: 8px; font: inherit; background: var(--light-yellow); color: inherit; }
+.purchase-form button { justify-self: start; }
+.purchase-item { padding: 20px 0; border-top: 1px solid var(--pale-oak); margin-top: 20px; }
+.purchase-request-without-comment > .purchase-item:first-of-type { border-top: 0; }
+.purchase-choice { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 24px; padding: 12px 0; }
+.purchase-choice > .text-link { grid-column: 1; grid-row: 1; justify-self: start; text-align: left; }
+.purchase-choice > .button-link { grid-column: 2; grid-row: 1 / span 2; }
+.purchase-choice-comment { grid-column: 1; grid-row: 2; }
+.purchase-choice-comment:empty { display: none; }
+.purchase-page .purchase-remove { border: 0; background: transparent; border-radius: 0; }
+.purchase-page button { cursor: pointer; font: inherit; }
+.purchase-page button:disabled { opacity: .5; cursor: default; }
 
+.purchase-page > .request-card { margin: 16px 0; padding: 20px 0; }
+.purchase-page .purchase-request { border-top: 2px solid var(--pale-oak); margin-top: 80px; padding-top: 40px; }
+.purchase-page .purchase-request > .request-heading {
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    background-color: #ece2ef;
+    border-left: 4px solid var(--dusty-taupe);
+    border-radius: 8px;
+}
+
+.purchase-form .purchase-temporary { display: flex; align-items: center; gap: 10px; }
+.purchase-temporary input { width: auto; }
+.purchase-form fieldset[hidden] { display: none; }
+
+.purchase-sender-group { border-top: 1px solid var(--pale-oak); padding: 12px 0; }
+.purchase-sender-group h4 { margin: 8px 0; }
+
+ 
+.requests-list > .request {
+    box-sizing: border-box;
+    width: min(326px, 100%);
+    max-width: 100%;
+    height: 340px;
+    margin: 0;
+    align-items: stretch;
+    vertical-align: top;
+}
+.requests-list > .request > .request-card {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+.requests-list .request-heading .requisite-badge {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.requests-list .request-comment {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    max-height: 4.5em;
+    line-height: 1.5;
+}
+
+.requests-list.purchases-list > .request { height: auto; }
+
+ 
+.status-badge[data-status="PENDING"] { background-color: #f4e9b8; color: #776025; }
+.status-badge[data-status="PLANNED"] { background-color: #e9e0d5; color: #735c48; }
+.status-badge[data-status="DRAFT"] { background-color: #e6e7e9; color: #58616b; }
+.status-badge[data-status="ADDED"] { background-color: #dceaf5; color: #3e6482; }
+.status-badge[data-status="COLLECTING"] { background-color: #f8dfc3; color: #8a5529; }
+.status-badge[data-status="COMPLETED"] { background-color: #dcebd4; color: #496b3b; }
+.status-badge[data-status="AWAITING_DECISION"] { background-color: #eaddf0; color: #77508a; }
+.status-badge[data-status="EXPIRED"] { background-color: #f3dcd6; color: #934e45; }
+
+.payment-toggle { border: 0; background: transparent; font: inherit; cursor: pointer; }
+
+.purchase-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin: 24px 0 16px;
+    padding: 20px 24px;
+    border: 1px solid var(--pale-oak);
+    border-radius: 12px;
+    background-color: var(--lemon-chiffon);
+    font-weight: 600;
+}
+.purchase-total strong { font-size: 1.5em; }
+
+.payment-checkbox { display: inline-flex; align-items: center; gap: 12px; padding: 12px 0; cursor: pointer; font-weight: 600; }
+.payment-checkbox input { width: 22px; height: 22px; accent-color: var(--dusty-taupe); cursor: pointer; }
+
+.status-badge[data-status="UNPAID"] { background-color: #f5d8d5; color: #a1322c; }
+.status-badge[data-status="PAID"] { background-color: #b9e8b2; color: #176b28; }
+
+.purchase-item-price {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background-color: var(--lemon-chiffon);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+ 
 :root { color-scheme: light; }
 :root[data-theme="dark"] {
     color-scheme: dark;
